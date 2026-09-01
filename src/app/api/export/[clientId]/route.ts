@@ -3,6 +3,7 @@ import { SAMPLE_CLIENTS, getClient } from '@/data/clients';
 import { buildClientWorkbook } from '@/lib/excel/workbook';
 
 export const runtime = 'nodejs';
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return SAMPLE_CLIENTS.map((client) => ({ clientId: client.id }));
@@ -33,7 +34,9 @@ export async function GET(
     headers: {
       'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       'Content-Disposition': `attachment; filename="${filenameFor(client.displayName, client.taxYear)}"`,
-      'Cache-Control': 'no-store',
+      // Built at deploy time and identical for every visitor: let the CDN hold
+      // it, and have browsers revalidate so a redeploy is picked up at once.
+      'Cache-Control': 'public, max-age=0, s-maxage=86400, stale-while-revalidate=86400',
     },
   });
 }

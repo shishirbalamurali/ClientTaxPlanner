@@ -6,6 +6,13 @@ import { Sidebar } from '@/components/shell/sidebar';
 import { SAMPLE_CLIENTS, getClient } from '@/data/clients';
 import { getTaxYear } from '@/lib/tax-year';
 
+/**
+ * The three sample clients are the only valid ids. Refusing on-demand rendering
+ * makes every other path a static 404 served from the CDN, so the deployed site
+ * has no request path that can invoke a server.
+ */
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return SAMPLE_CLIENTS.map((client) => ({ clientId: client.id }));
 }
