@@ -1,4 +1,4 @@
-# Private Client Tax Planning Simulator
+# Client Tax Planning Simulator
 
 An analytical model for private-client tax work. It takes a high-net-worth client
 record, measures it against the published thresholds for a tax year, and reports
