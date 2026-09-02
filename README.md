@@ -3,9 +3,15 @@ During this past summer, I interned at a wealth management boutique, and during 
 
 Say someone gives a cash gift to 3 people, before you would have to open a spreadsheet, note each one down, look up the gift limit in regards to tax codes for the current year, and figure out if a form is needed to be filled out. It does the same for foreign accounts, charity donations, income, trust income, and pulls from 45 **government sources** in regards to tax codes, baselines for comparison, and more. Now, plugging in files to this (locally run, private, open-source software) allows for much more exact calculations, groupings, and triggers of forms. It doesn't make a decision for you, it helps put everything in a simple UI that you can see, which not only saves time but also might make fewer mistakes. This serves as a **supporting** piece of software meant to make lives easier, but not figure everything out on its own.
 
+Version 1 served as a way to showcase a deeper understanding of tax codes, a prototype of what streamlined actually meant with 3 fictional cases, and as a demo to what a fuller product could be. This updated version allows advisors to load a client JSON file to the **LOCAL** web browser (step 1 of ensuring privacy). It was also baked in to never store **ANY** client information in any server, website, or platform, and die as soon as the tab closes. This is why it is not published as a public website with a dedicated server. Under no circumstances should an advisor EVER upload sensitive files into a public platform not backed by their company or parent company. 
+
+**This STILL serves as a demo, you should NOT plug in sensitive information here, the load factor is to test your own FICTIONAL client simulations**
+
+**At the end of the day, this is a demo to show what the future of an advisor can be, a passion project that should NOT be taken as something to use**
+
 I took on the role of a project manager during the course of building this product up. Being a finance major, I am not inately and expertly technical enough to have built this project on my own, but by leveraging AI tools like Claude Code, properly prompting them, and verifying the output with a human touch and with a cautious frame, I was able to create a simulator/planner that genuinely suited the vision I had of making future busy work easier and more accurate. As you go through this document, please keep in mind that this is still a project that will continue to be updated, should **not** be used individually to complete work, will **not** generate returns, and is supposed to be a helpful supplement to a wealth manager's daily workflow. 
 
-With that being said, I'll let you go to start going through this project, thanks!
+With that being said, I'll let you go to start going through this project, thanks! 
 
 -Shishir
 
