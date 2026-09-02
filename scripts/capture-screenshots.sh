@@ -61,3 +61,12 @@ shot scenarios        07-scenario-analysis 2000
 shot research         08-research-library  1800
 shot summary          09-executive-summary 2000
 shot dashboard        10-flag-trace         2500 lindqvist-2025 '#finding-FBAR-AGGREGATE'
+
+# The workspace lives outside /clients/<id>/, so it needs its own capture.
+profile="$(mktemp -d)"
+"$CHROME_BIN" --headless --disable-gpu --no-sandbox --hide-scrollbars \
+  --no-first-run --no-default-browser-check --disable-extensions \
+  --user-data-dir="$profile" --virtual-time-budget=6000 --window-size=1600,1500 \
+  --screenshot="${OUT_DIR}/11-load-record.png" "${BASE_URL}/load" >/dev/null 2>&1 || true
+rm -rf "$profile"
+echo "  11-load-record.png"

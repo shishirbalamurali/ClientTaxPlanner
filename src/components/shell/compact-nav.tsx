@@ -10,7 +10,7 @@ import { NAV_ITEMS, navHref } from './nav';
  * desktop-first; this exists so the application is still navigable on a laptop
  * running a split window or on a tablet.
  */
-export function CompactNav({ clientId }: { clientId: string }) {
+export function CompactNav({ basePath }: { basePath: string }) {
   const pathname = usePathname();
 
   return (
@@ -20,7 +20,7 @@ export function CompactNav({ clientId }: { clientId: string }) {
     >
       <ul className="flex min-w-max">
         {NAV_ITEMS.map((item) => {
-          const href = navHref(clientId, item.slug);
+          const href = navHref(basePath, item.slug);
           const active = pathname === href;
           return (
             <li key={item.slug}>

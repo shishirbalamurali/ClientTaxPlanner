@@ -3,6 +3,7 @@ import { ClientSwitcher } from '@/components/shell/client-switcher';
 import { CompactNav } from '@/components/shell/compact-nav';
 import { ExportButton } from '@/components/shell/export-button';
 import { Sidebar } from '@/components/shell/sidebar';
+import { sampleBasePath } from '@/components/shell/nav';
 import { SAMPLE_CLIENTS, getClient } from '@/data/clients';
 import { getTaxYear } from '@/lib/tax-year';
 
@@ -39,7 +40,7 @@ export default async function ClientLayout({
 
   return (
     <div className="flex min-h-screen">
-      <Sidebar clientId={clientId} />
+      <Sidebar basePath={sampleBasePath(clientId)} />
       <div className="min-w-0 flex-1">
         <header className="no-print sticky top-0 z-20 border-b border-rule bg-canvas/95 backdrop-blur-sm">
           <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-2.5">
@@ -54,7 +55,7 @@ export default async function ClientLayout({
             </div>
             <ExportButton clientId={clientId} />
           </div>
-          <CompactNav clientId={clientId} />
+          <CompactNav basePath={sampleBasePath(clientId)} />
           <div className="border-t border-rule bg-warn-wash px-5 py-1.5 text-[11px] text-warn">
             Educational model built on fictional client data. It does not provide tax, legal or
             financial advice and is not tax preparation software.

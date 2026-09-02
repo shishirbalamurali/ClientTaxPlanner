@@ -96,6 +96,44 @@ Eight modules, each keyed to a form or a regime:
 Plus an **Executive Summary** deliverable and an **Excel export** for the client
 file.
 
+### Loading your own record
+
+The three sample clients are the ones that ship with the project, but the engine
+is not tied to them. `/load` takes a client record as JSON and runs all nine
+modules on it.
+
+That page reads and analyses the record **entirely in the browser**. Nothing is
+uploaded, nothing is written to a server, and the record is discarded when the
+tab closes — it is held in `sessionStorage`, not `localStorage`, so it cannot
+outlive the sitting that created it. The Excel export works there too: ExcelJS is
+imported on click rather than at page load, so the workbook is built locally
+without adding half a megabyte to the page for everyone who never presses it.
+
+Anything omitted from the record takes a sensible default, so a useful input is a
+few lines rather than two hundred:
+
+```json
+{
+  "displayName": "Test client",
+  "filingStatus": "single",
+  "income": { "wages": 900000 },
+  "gifts": [{ "recipient": "A. Beneficiary", "amount": 44000 }],
+  "foreignAccounts": [
+    { "institution": "Bank A", "country": "France", "maximumValueUSD": 6000 },
+    { "institution": "Bank B", "country": "Japan",  "maximumValueUSD": 5000 }
+  ]
+}
+```
+
+Amounts may be written as `44000`, `"44000"` or `"$44,000"`. Errors name the
+field and say what was expected. Fields the model does not use are reported as
+warnings rather than silently dropped, and identifying fields are never carried
+through — a pasted `ssn` or `address` does not survive parsing, and a test
+asserts it.
+
+It is a portfolio demonstration rather than an approved system for handling
+client data, and the page says so: use invented figures.
+
 Three sample clients ship with the project, chosen so that each exercises a
 different part of the rule set:
 
@@ -403,6 +441,9 @@ work.**
 ### Executive summary — the client deliverable
 ![Executive summary](docs/screenshots/09-executive-summary.png)
 
+### Loading your own record — read and analysed in the browser
+![Load a client record](docs/screenshots/11-load-record.png)
+
 Screenshots are regenerated from a production build with
 `scripts/capture-screenshots.sh`.
 
@@ -460,7 +501,7 @@ Then open <http://localhost:3000>. The root redirects to the first sample client
 
 ## Testing
 
-134 tests across eight files, run with `npm test`.
+152 tests across nine files, run with `npm test`.
 
 | File | Covers |
 | --- | --- |
@@ -468,6 +509,7 @@ Then open <http://localhost:3000>. The root redirects to the first sample client
 | `foreign-rules.test.ts` | Aggregates below, exactly at and above the FBAR threshold; multiple accounts each individually below it; signature authority tracked separately; Form 8938 by filing status and residence, including the any-time test passing where the year-end test does not; § 5471, PFIC and foreign pension rules |
 | `trust-rules.test.ts` | Clients with and without trusts; the $600 filing threshold at the boundary; grantor trusts excluded; charitable remainder trusts routed to Form 5227; retained income and the compressed schedule; capital gain allocation; nonresident alien beneficiaries; multiple trusts and the distribution tie-out |
 | `federal-model.test.ts` | Bracket arithmetic checked against the cumulative amounts published in Rev. Proc. 2024-40; capital gain stacking; the SALT phase-down and its floor; charitable ceiling interaction; net investment income tax on both limbs of the "lesser of" |
+| `client-input.test.ts` | Parsing a pasted record: the minimal case, money written with dollar signs and commas, defaults for omitted fields, malformed JSON explained in plain terms, a bad filing status, an unmodeled tax year, a gift missing a recipient, and confirmation that identifying fields never survive parsing |
 | `research-integrity.test.ts` | Unique ids; government hosts only; https; ISO verification dates; every rule cites at least one authority that exists; every finding carries a full chain; findings ordered by severity; evaluation is deterministic; no identifying-number fields |
 | `scenarios.test.ts` | Column order and baseline; assumptions present; the client record is not mutated; each lever moves the metrics it should and leaves the rest alone |
 | `synthetic-cohort.test.ts` | Seed determinism; cohort spans both sides of every threshold; **all 39 rules fire at least once across 100 generated clients**; no non-finite figures; tax never exceeds modeled income |

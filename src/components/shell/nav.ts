@@ -38,6 +38,14 @@ export const NAV_GROUPS: NavGroup[] = [
 
 export const NAV_ITEMS = NAV_GROUPS.flatMap((group) => group.items);
 
-export function navHref(clientId: string, slug: string): string {
-  return `/clients/${clientId}/${slug}`;
+export function navHref(basePath: string, slug: string): string {
+  return `${basePath}/${slug}`;
 }
+
+/** Base path for the three records that ship with the project. */
+export function sampleBasePath(clientId: string): string {
+  return `/clients/${clientId}`;
+}
+
+/** Base path for a record the visitor loaded in their own browser. */
+export const WORKSPACE_BASE_PATH = '/workspace';
