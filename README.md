@@ -1,3 +1,15 @@
+# Introduction
+During this past summer, I interned at a wealth management boutique, and during my time there, I came across a very annoying repeated task. A lot of the work that ended up being done felt mechanical, a bunch of repeated tasks and pathways that felt like they could be streamlined, and so I spent time brainstorming a way to make these efforts more efficient. The biggest problem was how tedious it was to sort through a client file, aggregate each claim, sort them out neatly, and compare them to public thresholds. The thing with this isn't that it's hard, but moreso that it's easy to make mistakes in and annoying to repeatedly do. 
+
+Say someone gives a cash gift to 3 people, before you would have to open a spreadsheet, note each one down, look up the gift limit in regards to tax codes for the current year, and figure out if a form is needed to be filled out. It does the same for foreign accounts, charity donations, income, trust income, and pulls from 45 **government sources** in regards to tax codes, baselines for comparison, and more. Now, plugging in files to this (locally run, private, open-source software) allows for much more exact calculations, groupings, and triggers of forms. It doesn't make a decision for you, it helps put everything in a simple UI that you can see, which not only saves time but also might make fewer mistakes. This serves as a **supporting** piece of software meant to make lives easier, but not figure everything out on its own.
+
+I took on the role of a project manager during the course of building this product up. Being a finance major, I am not inately and expertly technical enough to have built this project on my own, but by leveraging AI tools like Claude Code, properly prompting them, and verifying the output with a human touch and with a cautious frame, I was able to create a simulator/planner that genuinely suited the vision I had of making future busy work easier and more accurate. As you go through this document, please keep in mind that this is still a project that will continue to be updated, should **not** be used individually to complete work, will **not** generate returns, and is supposed to be a helpful supplement to a wealth manager's daily workflow. 
+
+With that being said, I'll let you go to start going through this project, thanks!
+
+-Shishir
+
+
 # Client Tax Planning Simulator
 
 An analytical model for private-client tax work. It takes a high-net-worth client
